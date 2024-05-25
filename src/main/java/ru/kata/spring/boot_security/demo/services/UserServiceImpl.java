@@ -12,10 +12,8 @@ import ru.kata.spring.boot_security.demo.entities.User;
 import ru.kata.spring.boot_security.demo.repositories.UserDao;
 
 import javax.transaction.Transactional;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,8 +44,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
     @Override
     @Transactional
-    public void addUser(User user, Set<Role> roles) {
-        user.setRoles(roles);
+    public void addUser(User user) {
         userDao.addUser(user);
     }
 
@@ -69,8 +66,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional
-    public void updateUser(User user, Set<Role> roles) {
-        user.setRoles(roles);
+    public void updateUser(User user) {
         userDao.editUser(user);
     }
 
@@ -79,10 +75,4 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userDao.getAllRoles();
     }
 
-    @Override
-    public Set<Role> getRolesByArrayIds(Long[] idRoles) {
-        return Arrays.stream(idRoles)
-                .map( a -> userDao.getById(a))
-                .collect(Collectors.toSet());
-    }
 }

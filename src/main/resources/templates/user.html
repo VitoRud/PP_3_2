@@ -54,24 +54,25 @@
 </head>
 <body>
 <div class="h3">
-    <h5 th:text="${user.getName()}" style="color: white"></h5>
+    <h5 id="userAuthName" style="color: white"></h5>
     <h5 style="color: white; padding-left: 8px">with roles:</h5>
-    <h5 th:each="role : ${user.authorities}" th:text="${role.authority}"
-        style="color: white; padding-left: 8px"></h5>
+    <h5 id="userAuthRole" style="color: white; padding-left: 8px"></h5>
     <form class="h7" th:action="@{/logout}" method="get">
         <input type="submit" class="btn btn-dark" value="Logout"/>
     </form>
 </div>
 <div class="row">
     <div class="col-2" style="padding: 0;">
+        <div>
             <nav class="navbar navbar-expand-lg navbar-light bg-white bs-side-navbar">
                 <div class="navbar-nav flex-column w-100">
                     <a sec:authorize="hasRole('ADMIN')" class="nav-link btn btn-primary btn-block text-white"
-                       th:href="@{/admin/}">Admin</a>
+                       th:href="@{/admin}">Admin</a>
                     <a class="nav-link btn btn-primary btn-block text-white"
-                       th:href="@{/user/}">User</a>
+                       th:href="@{/user}">User</a>
                 </div>
             </nav>
+        </div>
     </div>
     <div class="col-10" style="margin: 0; padding: 0;">
         <div class="h4">
@@ -89,14 +90,9 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Login</th>
                                 <th scope="col">Email</th>
+                                <th scope="col">Role</th>
                             </tr>
-                            <tbody>
-                            <tr class="table-secondary">
-                                <td th:text="${user.getId()}">
-                                <td th:text="${user.getName()}">
-                                <td th:text="${user.getEmail()}">
-                            </tr>
-                            </tbody>
+                            <tbody id="userTable">
                         </table>
                     </div>
                 </div>
@@ -104,5 +100,15 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="/static/user.js"></script>
 </body>
 </html>
