@@ -11,9 +11,13 @@
 	<groupId>ru.kata</groupId>
 	<artifactId>spring-boot_security-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-boot_security-demo</name>
+    <packaging>pom</packaging>
+    <name>spring-boot_security-demo</name>
 	<description>Demo project for Spring Boot</description>
-	<properties>
+    <modules>
+        <module>untitled</module>
+    </modules>
+    <properties>
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
